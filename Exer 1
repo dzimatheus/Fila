@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "Fila.h"
+
+int main() {
+    int opcao, item;
+    Fila fila;
+    inicializarFila(&fila);
+
+    do {
+        printf("\nMenu:\n");
+        printf("1. INSERIR ITEM NA FILA\n");
+        printf("2. REMOVER ITEM DA FILA\n");
+        printf("3. LISTAR DADOS DA FILA\n");
+        printf("4. SAIR\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                printf("Digite o valor do item a ser inserido: ");
+                scanf("%d", &item);
+                inserirFila(&fila, item);
+                break;
+            case 2:
+                item = removerFila(&fila);
+                if (item != -1) {
+                    printf("Item removido: %d\n", item);
+                } else {
+                    printf("Fila vazia!\n");
+                }
+                break;
+            case 3:
+                listarFila(&fila);
+                break;
+            case 4:
+                printf("Saindo do programa.\n");
+                break;
+            default:
+                printf("Opcao invalida. Tente novamente.\n");
+        }
+    } while (opcao != 4);
+
+    return 0;
+}
